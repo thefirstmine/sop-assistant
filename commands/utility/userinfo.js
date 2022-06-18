@@ -19,21 +19,9 @@ module.exports = {
                 x.user.tag.toLowerCase() === args.join(' ').toLowerCase());
         }
         if (!target) return message.reply("invalid user.")
-
-        let statusEmoji;
-        if (target.presence === null){
-            statusEmoji = '<:offline:865218362560872469>'
-        } else if (target.presence.status === 'idle'){
-            statusEmoji = '<:idle:865218105650577468>'
-        } else if(target.presence.status === 'dnd'){
-            statusEmoji = '<:dnd:865218105277808672>'
-        } else if(target.presence.status === 'online'){
-            statusEmoji = '<:online:865218105353306133>'
-        }
-
+        
         const userEmbed = new Discord.MessageEmbed()
         .setTitle("User info")
-        .setDescription(statusEmoji)
         .addField("Username and tag:", `${target.user.tag}`)
         .addField("User ID:", `${target.user.id}`)
         .addField("Joined this server at:", `${target.joinedAt}`)

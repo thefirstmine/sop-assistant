@@ -16,7 +16,7 @@ module.exports = {
     ],
     run: async(client, interaction, args) => {
         const [question] = args;
-        const ballAnswered = await neko.sfw['8Ball']({text: question});
+        const ballAnswered = await neko.eightBall({text: question});
         
         const embed = new Discord.MessageEmbed()
         .setTitle("I have answered.")
