@@ -4,7 +4,7 @@ module.exports = {
 	name: 'lockdown',
 	description: 'Lockdown a channel from anyone sending messages',
     category: "Moderation",
-    aliases: ['lock', 'uarantine'],
+    aliases: ['lock', 'quarantine'],
 	async execute(client, message, args) {
         if (!message.member.permissionsIn(message.channel).toArray().includes('MANAGE_ROLES')) return message.reply("You can't manage this channels permissions!")
         if (!message.guild.me.permissionsIn(message.channel).toArray().includes('MANAGE_ROLES')) return message.reply("I can't manage this channels permissions!")
