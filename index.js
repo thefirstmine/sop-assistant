@@ -55,6 +55,10 @@ client.distube = new Distube.default(client, {
 	leaveOnStop: true,
 	plugins: [new SoundCloudPlugin(), new SpotifyPlugin({
     emitEventsAfterFetching: true,
+    api: {
+      clientId: process.env.SPOTIFY_CLIENTID,
+      clientSecret: process.env.SPOTIFY_CLIENTSECRET,
+    }
   })],
 })
 
@@ -324,6 +328,7 @@ client.on('interactionCreate', async interaction => {
     const id = interaction.customId.split(" ")[1];
     const member = interaction.guild.members.cache.get(id);
 
+    if(choice === "yes") {
     const disabledButtons = new Discord.MessageActionRow()
           .addComponents(
             new Discord.MessageButton()
@@ -342,7 +347,6 @@ client.on('interactionCreate', async interaction => {
       return member.guild.roles.cache.find(role => role.name === name)
     }
 
-    if(choice === "yes") {
       await interaction.deferUpdate()
 
       const campus = interaction.message.embeds[0].fields[0].value;
@@ -365,6 +369,19 @@ client.on('interactionCreate', async interaction => {
       member.send("You have been successfully verified! You can now chat in <#978318872878911508>")
       interaction.followUp({content: `User ${member.user.tag} has been approved!`})
     } else if(choice === "no") {
+      const disabledButtons = new Discord.MessageActionRow()
+      .addComponents(
+        new Discord.MessageButton()
+          .setLabel("Yes") 
+          .setCustomId("yes " + member.user.id)
+          .setStyle("SUCCESS")
+          .setDisabled(true),
+        new Discord.MessageButton()
+          .setLabel("No")
+          .setCustomId("no " + member.user.id)
+          .setDisabled(true)
+          .setStyle("DANGER"),
+      )
       await interaction.deferUpdate()
 
       const logger = client.channels.cache.get("983970417809170432")  
