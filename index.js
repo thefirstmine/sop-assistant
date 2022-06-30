@@ -167,7 +167,7 @@ client.on('ready', async () => {
     //await client.guilds.cache.get('560339741602480128').commands.set(arrayOfSlashCommands) //UNCOMMENT IF TESTING FOR DEVELOPMENT
     //await client.guilds.cache.get('856412585862496266').commands.set(arrayOfSlashCommands)
 
-    client.user.setActivity('s!help | discord.gg/ng535eZNje', { type: 'LISTENING' });
+    client.user.setActivity('s!help | Welcome to SOP!', { type: 'LISTENING' });
     errorWebhook.send({
       content: `**${client.user.username}** is now up and running.`,
       username: `${client.user.username} | Startup`,
